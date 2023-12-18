@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background: gray;
+}
+.shop-now-background {
+  background-image: url("../public/front-close-view-beautiful-flower-brown-pot-white-background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100%;
+  width: 100%;
+  height: 70vh;
+  margin: 0 auto;
+}
