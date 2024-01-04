@@ -6,7 +6,7 @@ function Navbar() {
   return (
     <header>
       <nav>
-        <div className="flex justify-between items-center h-24 bg-white m-0">
+        <div className="w-full flex justify-between items-center h-24 bg-white m-0">
           <button className="text-2xl m-3 lg:hidden">
             <FiMenu />
           </button>
