@@ -7,14 +7,14 @@ export function AllPlants() {
   return (
     <section>
       <div>
-        <div className="grid grid-rows-2 grid-flow-col gap-4 m-10">
-          <div className="row-span-3 ">
-            <img src="public\banner.jpg" alt="..." />
-          </div>
-          <div className="col-span-2 ">
+        <div className="m-4 grid gap-2 md:m-10 md:grid-cols-2 md:grid-rows-2 md:gap-4 ">
+          <div className="">
             <img src="public\banner-2.jpg" alt="..." />
           </div>
-          <div className=" col-span-2 ">
+          <div className="row-span-2">
+            <img src="public\banner.jpg" alt="..." />
+          </div>
+          <div className="">
             <img src="public\banner-3.jpg" alt="..." />
           </div>
         </div>

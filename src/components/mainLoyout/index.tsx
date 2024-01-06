@@ -1,5 +1,5 @@
 import { AllPlants } from "../allPlants";
-import Banner from "../banner";
+// import Banner from "../banner";
 import { PlantCare } from "../plantCare";
 import SinglePlant from "../singlePlant";
 import { TrendingPlants } from "../trendingPlants";
@@ -7,7 +7,7 @@ import { TrendingPlants } from "../trendingPlants";
 function MainLayout() {
   return (
     <>
-      <Banner />
+      {/* <Banner /> */}
       <TrendingPlants
         smallHeading="Free Shipping"
         heading="Top Trending Plants"
