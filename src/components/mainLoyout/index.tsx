@@ -1,6 +1,8 @@
 import { AllPlants } from "../allPlants";
+import { Benefits } from "../benefits";
 // import Banner from "../banner";
 import { PlantCare } from "../plantCare";
+import { Products } from "../products";
 import SinglePlant from "../singlePlant";
 import { TrendingPlants } from "../trendingPlants";
 
@@ -19,6 +21,8 @@ function MainLayout() {
         heading="Creating a Beautiful Balcony Garden"
       />
       <AllPlants />
+      <Products />
+      <Benefits />
     </>
   );
 }
