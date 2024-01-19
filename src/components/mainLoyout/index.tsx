@@ -1,6 +1,7 @@
 import { AllPlants } from "../allPlants";
 import { Benefits } from "../benefits";
-// import Banner from "../banner";
+import { Blog } from "../blog";
+import Banner from "../banner";
 import { PlantCare } from "../plantCare";
 import { Products } from "../products";
 import SinglePlant from "../singlePlant";
@@ -9,7 +10,7 @@ import { TrendingPlants } from "../trendingPlants";
 function MainLayout() {
   return (
     <>
-      {/* <Banner /> */}
+      <Banner />
       <TrendingPlants
         smallHeading="Free Shipping"
         heading="Top Trending Plants"
@@ -23,6 +24,11 @@ function MainLayout() {
       <AllPlants />
       <Products />
       <Benefits />
+      <TrendingPlants
+        smallHeading="Free Shipping"
+        heading="Top Trending Plants"
+      />
+      <Blog />
     </>
   );
 }

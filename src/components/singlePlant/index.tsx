@@ -1,6 +1,6 @@
 const SinglePlant = () => {
   return (
-    <div className=" grid grid-cols-2 gap-5 m-4 lg:grid-cols-3 lg:gap-10 lg:m-10">
+    <div className=" grid grid-cols-2 gap-5 m-4 lg:grid-cols-3 lg:gap-10 lg:mx-60 lg:mb-30">
       <div>
         <img src="public/p1.jpg" alt="plant" className="" />
         <p className="m-3">Italian Stone Pine</p>
