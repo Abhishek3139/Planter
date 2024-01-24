@@ -5,37 +5,14 @@
 // import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import "swiper/css";
+// import "swiper/css";
 
 export function FilterProducts() {
   return (
-    <div className="flex overflow-x-scroll">
-      <div className="">Top rating</div>
-      <div>Best sellers</div>
-      <div>Featured products</div>
-
-      {/* <Swiper
-        slidesPerView={2}
-        spaceBetween={30}
-        pagination={{
-          clickable: true,
-        }}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-          <button className="text-lg border-white border-2 border-r-black pr-10 pl-5">
-            Top rating
-          </button>
-        </SwiperSlide>
-        <SwiperSlide>
-          <button className="text-lg border-white border-2 border-r-black pr-10 pl-5">
-            Best sellers
-          </button>
-        </SwiperSlide>
-        <SwiperSlide>
-          <button className="text-lg">Featured products</button>
-        </SwiperSlide>
-      </Swiper> */}
+    <div className="flex mx-52">
+      <div className="border-r-2 border-gray-200 px-8 py-4">Top rating</div>
+      <div className="border-r-2 border-gray-200 px-8 py-4">Best sellers</div>
+      <div className="px-8 py-4">Featured products</div>
     </div>
   );
 }

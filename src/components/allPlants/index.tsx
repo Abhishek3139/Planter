@@ -6,8 +6,8 @@
 export function AllPlants() {
   return (
     <section>
-      <div>
-        <div className="m-4 grid gap-2 md:m-10 md:grid-cols-2 md:grid-rows-2 md:gap-4 lg:mx-60">
+      <>
+        <div className="m-4 grid gap-2 md:m-10 md:grid-cols-2 md:grid-rows-2 md:gap-4 lg:mx-60  bg-[#f5f5f5]">
           <div className="">
             <img src="public\banner-2.jpg" alt="..." />
           </div>
@@ -18,7 +18,7 @@ export function AllPlants() {
             <img src="public\banner-3.jpg" alt="..." />
           </div>
         </div>
-      </div>
+      </>
     </section>
   );
 }

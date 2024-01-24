@@ -14,14 +14,16 @@ function MainLayout() {
       <TrendingPlants
         smallHeading="Free Shipping"
         heading="Top Trending Plants"
-      />
-      <SinglePlant />
+      >
+        <SinglePlant />
+      </TrendingPlants>
       <PlantCare />
       <TrendingPlants
         smallHeading="All kind of Plants"
         heading="Creating a Beautiful Balcony Garden"
-      />
-      <AllPlants />
+      >
+        <AllPlants />
+      </TrendingPlants>
       <Products />
       <Benefits />
       <TrendingPlants
