@@ -1,6 +1,6 @@
 // import * as React from 'react';
 
-import { FilterProducts } from "../filterProduct";
+// import { FilterProducts } from "../filterProduct";
 
 // export interface IAppProps {
 // }
@@ -8,7 +8,7 @@ import { FilterProducts } from "../filterProduct";
 export function Products() {
   return (
     <div>
-      <FilterProducts />
+      {/* <FilterProducts /> */}
       <div className="grid grid-cols-2 gap-4 m-4 md:grid-cols-3 lg:mx-60 my-30">
         <div>
           <img src="public\p2.jpg" />
