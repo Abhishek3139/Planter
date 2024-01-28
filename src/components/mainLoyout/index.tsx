@@ -1,12 +1,13 @@
 import { AllPlants } from "../allPlants";
 import { Benefits } from "../benefits";
-import { Blog } from "../blog";
+import Blog from "../blog";
 import Banner from "../banner";
 import { PlantCare } from "../plantCare";
 import { Products } from "../products";
 import SinglePlant from "../singlePlant";
 import { TrendingPlants } from "../trendingPlants";
 import { Footer } from "../footer";
+import SingleProduct from "../singleProduct";
 
 function MainLayout() {
   return (
@@ -32,6 +33,7 @@ function MainLayout() {
         heading="Top Trending Plants"
       />
       <Blog />
+      <SingleProduct />
       <Footer />
     </>
   );

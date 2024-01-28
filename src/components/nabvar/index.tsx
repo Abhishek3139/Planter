@@ -1,14 +1,22 @@
+export interface IAppProps {
+  handleViewSidebar: () => void;
+}
 import { FiMenu } from "react-icons/fi";
 import { HiShoppingCart } from "react-icons/hi";
 import { CiSearch, CiUser, CiHeart } from "react-icons/ci";
 import { Link } from "react-router-dom";
-function Navbar() {
+// import { useState } from "react";
+// import { SideBar } from "../sidebar";
+function Navbar({ handleViewSidebar }: IAppProps) {
   return (
     <header>
       <nav>
         <div className="w-full flex justify-between items-center h-24 bg-white m-0">
           <div className=" lg:w-80">
-            <button className="text-2xl m-3 lg:hidden">
+            <button
+              className="text-2xl m-3 lg:hidden"
+              onClick={handleViewSidebar}
+            >
               <FiMenu />
             </button>
             <ul className="hidden lg:flex lg:justify-between">
