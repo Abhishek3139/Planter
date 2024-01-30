@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 const SinglePlant = () => {
+  const navigate = useNavigate();
   return (
     <div className=" grid grid-cols-2 gap-5 m-4 lg:grid-cols-3 lg:gap-10 lg:mx-60 lg:mb-30">
-      <div>
+      <div onClick={() => navigate("/product")}>
         <img src="public/p1.jpg" alt="plant" className="" />
         <p className="m-3">Italian Stone Pine</p>
         <span>200$</span>

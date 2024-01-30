@@ -6,6 +6,7 @@ export interface IAppProps {
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 export default function Sidebar({ isOpen, handleViewSidebar }: IAppProps) {
   return (
@@ -59,9 +60,23 @@ export default function Sidebar({ isOpen, handleViewSidebar }: IAppProps) {
                             role="list"
                             className="-my-6 divide-y divide-gray-200"
                           >
-                            <li className="flex py-6">HOME</li>
+                            <Link to={"/"}>
+                              <li
+                                className="flex py-6"
+                                onClick={() => handleViewSidebar(false)}
+                              >
+                                HOME
+                              </li>
+                            </Link>
                             <li className="flex py-6">SHOP</li>
-                            <li className="flex py-6">PRODUCTS</li>
+                            <Link to={"/products"}>
+                              <li
+                                className="flex py-6"
+                                onClick={() => handleViewSidebar(false)}
+                              >
+                                PRODUCTS
+                              </li>
+                            </Link>
                             <li className="flex py-6">BLOG</li>
                             <li className="flex py-6">PAGE</li>
                           </ul>

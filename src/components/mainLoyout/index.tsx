@@ -7,7 +7,6 @@ import { Products } from "../products";
 import SinglePlant from "../singlePlant";
 import { TrendingPlants } from "../trendingPlants";
 import { Footer } from "../footer";
-import SingleProduct from "../singleProduct";
 
 function MainLayout() {
   return (
@@ -33,7 +32,6 @@ function MainLayout() {
         heading="Top Trending Plants"
       />
       <Blog />
-      <SingleProduct />
       <Footer />
     </>
   );
