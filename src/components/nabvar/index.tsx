@@ -24,7 +24,9 @@ function Navbar({ handleViewSidebar }: IAppProps) {
                 <Link to={"/"}>HOME</Link>
               </li>
               <li className="mx-2 my-3">SHOP</li>
-              <li className="mx-2 my-3">PRODUCTS</li>
+              <Link to={"/products"}>
+                <li className="mx-2 my-3">PRODUCTS</li>
+              </Link>
               <li className="mx-2 my-3">BLOG</li>
               <li className="mx-2 my-3">PAGE</li>
             </ul>
