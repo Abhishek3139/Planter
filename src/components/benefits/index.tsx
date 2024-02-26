@@ -7,7 +7,7 @@ import { ShopNowButton } from "../buttons/shopNow";
 
 export function Benefits() {
   return (
-    <div className="m-3 bg-[#f5f5f5] p-6 md:flex md:justify-between md:items-center md-mx-10 lg:mx-60">
+    <div className="m-3 bg-[#f5f5f5] p-6 md:flex md:justify-between md:items-center md-mx-10 ">
       <h3 className="text-3xl font-semibold my-4">
         The Benefits of Indoor Plants
       </h3>

@@ -91,16 +91,16 @@ export default function SingleProduct() {
           <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
               <img
-                src={product.images[1].src}
+                src="public\singlePlant\pro-8.jpg"
                 alt={product.images[1].alt}
-                className="h-full w-full object-cover object-center"
+                className="h-72 w-full object-fill object-center"
               />
             </div>
             <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
               <img
-                src={product.images[2].src}
+                src="public\singlePlant\pro-8.jpg"
                 alt={product.images[2].alt}
-                className="h-full w-full object-cover object-center"
+                className="h-72 w-full object-fill object-center"
               />
             </div>
           </div>
