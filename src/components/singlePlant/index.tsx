@@ -45,8 +45,8 @@ const SinglePlant = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div onClick={() => navigate("/product")}>
-            <img src="public/p1.jpg" alt="plant" className="" />
-            <p className="m-3">Italian Stone Pine</p>
+            <img src="public/p2.jpg" alt="plant" className="" />
+            <p className="m-3">Aloe</p>
             <span>200$</span>
           </div>
         </SwiperSlide>{" "}
@@ -59,8 +59,8 @@ const SinglePlant = () => {
         </SwiperSlide>{" "}
         <SwiperSlide>
           <div onClick={() => navigate("/product")}>
-            <img src="public/p1.jpg" alt="plant" className="" />
-            <p className="m-3">Italian Stone Pine</p>
+            <img src="public/p2.jpg" alt="plant" className="" />
+            <p className="m-3">Aloe</p>
             <span>200$</span>
           </div>
         </SwiperSlide>{" "}
@@ -73,8 +73,8 @@ const SinglePlant = () => {
         </SwiperSlide>{" "}
         <SwiperSlide>
           <div onClick={() => navigate("/product")}>
-            <img src="public/p1.jpg" alt="plant" className="" />
-            <p className="m-3">Italian Stone Pine</p>
+            <img src="public/p2.jpg" alt="plant" className="" />
+            <p className="m-3">Aloe</p>
             <span>200$</span>
           </div>
         </SwiperSlide>

@@ -11,22 +11,33 @@ import { Cart } from "./components/cart";
 
 function App() {
   const [showSidebar, setShowSidebar] = useState(false);
+  const [open, setOpen] = useState(true);
+
   const handleViewSidebar = () => {
     setShowSidebar(!showSidebar);
   };
-
+  const handleShowCart = () => {
+    setOpen(!open);
+  };
   return (
     <BrowserRouter>
       {location.pathname !== "/signin" && (
-        <Navbar handleViewSidebar={handleViewSidebar} />
+        <Navbar
+          handleViewSidebar={handleViewSidebar}
+          handleShowCart={handleShowCart}
+        />
       )}
+      <Cart open={open} setOpen={handleShowCart} />
       <SideBar isOpen={showSidebar} handleViewSidebar={handleViewSidebar} />
       <Routes>
         <Route path="/" element={<MainLayout />}></Route>
         <Route path="/product" element={<SingleProduct />}></Route>
         <Route path="/products" element={<Products />}></Route>
         <Route path="/signin" element={<Signin />}></Route>
-        <Route path="/cart" element={<Cart />}></Route>
+        {/* <Route
+          path="/cart"
+          element={<Cart open={open} setOpen={handleShowCart} />}
+        ></Route> */}
       </Routes>
     </BrowserRouter>
   );

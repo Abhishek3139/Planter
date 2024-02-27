@@ -1,14 +1,15 @@
 export interface IAppProps {
   handleViewSidebar: () => void;
+  handleShowCart: () => void;
 }
 import { FiMenu } from "react-icons/fi";
 import { HiShoppingCart } from "react-icons/hi";
 import { CiSearch, CiUser, CiHeart } from "react-icons/ci";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { useState } from "react";
 // import { SideBar } from "../sidebar";
-function Navbar({ handleViewSidebar }: IAppProps) {
-  const navigate = useNavigate();
+function Navbar({ handleViewSidebar, handleShowCart }: IAppProps) {
+  // const navigate = useNavigate();
   return (
     <header>
       <nav>
@@ -47,7 +48,8 @@ function Navbar({ handleViewSidebar }: IAppProps) {
             </button>
             <button
               className="text-2xl my-3 mx-4"
-              onClick={() => navigate("/cart")}
+              // onClick={() => navigate("/cart")}
+              onClick={handleShowCart}
             >
               <HiShoppingCart />
             </button>
