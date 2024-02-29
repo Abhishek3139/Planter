@@ -11,7 +11,7 @@ import { Cart } from "./components/cart";
 
 function App() {
   const [showSidebar, setShowSidebar] = useState(false);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const handleViewSidebar = () => {
     setShowSidebar(!showSidebar);
