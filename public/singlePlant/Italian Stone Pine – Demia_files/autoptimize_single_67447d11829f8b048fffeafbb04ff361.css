@@ -1,1 +1,88 @@
-@font-face{font-family:icomoon;src:url(//wpbingosite.com/wordpress/demia/wp-content/themes/demia/css/../fonts/icomoon.eot?fzv6fp);src:url(//wpbingosite.com/wordpress/demia/wp-content/themes/demia/css/../fonts/icomoon.eot?fzv6fp#iefix) format("embedded-opentype"),url(//wpbingosite.com/wordpress/demia/wp-content/themes/demia/css/../fonts/icomoon.ttf?fzv6fp) format("truetype"),url(//wpbingosite.com/wordpress/demia/wp-content/themes/demia/css/../fonts/icomoon.woff?fzv6fp) format("woff"),url(//wpbingosite.com/wordpress/demia/wp-content/themes/demia/css/../fonts/icomoon.svg?fzv6fp#icomoon) format("svg");font-weight:400;font-style:normal;font-display:block}[class*=" icon-"],[class^=icon-]{font-family:icomoon;speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.icon-plus:before{content:"\e90e"}.icon-air-purifying:before{content:"\e90b"}.icon-cafe-plant:before{content:"\e90c"}.icon-out-door-plant:before{content:"\e90d"}.icon-house-plants:before{content:"\e90f"}.icon-plant-bundle:before{content:"\e910"}.icon-succulents:before{content:"\e911"}.icon-offic-plant:before{content:"\e913"}.icon-low-maintenance:before{content:"\e914"}.icon-heart:before{content:"\e90a"}.icon-search:before{content:"\e900"}.icon-video:before{content:"\e909"}.icon-location:before{content:"\e907"}.icon-email:before{content:"\e908"}.icon-star:before{content:"\e906"}.icon-left:before{content:"\e901"}.icon-close:before{content:"\e902"}.icon-cart:before{content:"\e903"}.icon-login:before{content:"\e904"}.icon-right:before{content:"\e905"}
+@font-face {
+  font-family: icomoon;
+  src: url(//wpbingosite.com/wordpress/demia/wp-content/themes/demia/css/../fonts/icomoon.eot?fzv6fp);
+  src:
+    url(//wpbingosite.com/wordpress/demia/wp-content/themes/demia/css/../fonts/icomoon.eot?fzv6fp#iefix)
+      format('embedded-opentype'),
+    url(//wpbingosite.com/wordpress/demia/wp-content/themes/demia/css/../fonts/icomoon.ttf?fzv6fp)
+      format('truetype'),
+    url(//wpbingosite.com/wordpress/demia/wp-content/themes/demia/css/../fonts/icomoon.woff?fzv6fp)
+      format('woff'),
+    url(//wpbingosite.com/wordpress/demia/wp-content/themes/demia/css/../fonts/icomoon.svg?fzv6fp#icomoon)
+      format('svg');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+[class*=' icon-'],
+[class^='icon-'] {
+  font-family: icomoon;
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-plus:before {
+  content: '\e90e';
+}
+.icon-air-purifying:before {
+  content: '\e90b';
+}
+.icon-cafe-plant:before {
+  content: '\e90c';
+}
+.icon-out-door-plant:before {
+  content: '\e90d';
+}
+.icon-house-plants:before {
+  content: '\e90f';
+}
+.icon-plant-bundle:before {
+  content: '\e910';
+}
+.icon-succulents:before {
+  content: '\e911';
+}
+.icon-offic-plant:before {
+  content: '\e913';
+}
+.icon-low-maintenance:before {
+  content: '\e914';
+}
+.icon-heart:before {
+  content: '\e90a';
+}
+.icon-search:before {
+  content: '\e900';
+}
+.icon-video:before {
+  content: '\e909';
+}
+.icon-location:before {
+  content: '\e907';
+}
+.icon-email:before {
+  content: '\e908';
+}
+.icon-star:before {
+  content: '\e906';
+}
+.icon-left:before {
+  content: '\e901';
+}
+.icon-close:before {
+  content: '\e902';
+}
+.icon-cart:before {
+  content: '\e903';
+}
+.icon-login:before {
+  content: '\e904';
+}
+.icon-right:before {
+  content: '\e905';
+}

@@ -1,40 +1,39 @@
-import { AllPlants } from "../allPlants";
-import { Benefits } from "../benefits";
-import Blog from "../blog";
-import Banner from "../banner";
-import { PlantCare } from "../plantCare";
-import { Products } from "../products";
-import SinglePlant from "../singlePlant";
-import { TrendingPlants } from "../trendingPlants";
-import { Footer } from "../footer";
+import { Route, Routes } from 'react-router-dom';
+import { Home } from '../page/home';
+import SingleProduct from '../singleProduct';
+import { Products } from '../products';
+import ProtectedRoute from '../../protectedRoutes';
+import Navbar from '../nabvar';
+import Sidebar from '../sidebar';
+import { Cart } from '../cart';
+import { useState } from 'react';
 
-function MainLayout() {
+function MainLayoutRoutes() {
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleViewSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
+  const handleShowCart = () => {
+    setOpen(!open);
+  };
   return (
     <>
-      <Banner />
-      <TrendingPlants
-        smallHeading="Free Shipping"
-        heading="Top Trending Plants"
-      >
-        <SinglePlant />
-      </TrendingPlants>
-      <PlantCare />
-      <TrendingPlants
-        smallHeading="All kind of Plants"
-        heading="Creating a Beautiful Balcony Garden"
-      >
-        <AllPlants />
-      </TrendingPlants>
-      <Products />
-      <Benefits />
-      <TrendingPlants
-        smallHeading="Free Shipping"
-        heading="Top Trending Plants"
-      />
-      <Blog />
-      <Footer />
+      {location.pathname !== '/signin' && location.pathname !== '/signup' && (
+        <Navbar handleViewSidebar={handleViewSidebar} handleShowCart={handleShowCart} />
+      )}
+      <Cart open={open} setOpen={handleShowCart} />
+      <Sidebar isOpen={showSidebar} handleViewSidebar={handleViewSidebar} />
+      <Routes>
+        <Route path='/' element={<ProtectedRoute />}>
+          <Route path='/' element={<Home />} />
+          <Route path='/product' element={<SingleProduct />}></Route>
+          <Route path='/products' element={<Products />}></Route>
+        </Route>
+      </Routes>
     </>
   );
 }
 
-export default MainLayout;
+export default MainLayoutRoutes;

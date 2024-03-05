@@ -11,7 +11,7 @@ body {
   background: white;
 }
 .shop-now-background {
-  background-image: url("public/slideshow-v2-1.webp");
+  background-image: url('public/slideshow-v2-1.webp');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 100%;
@@ -20,7 +20,7 @@ body {
 }
 
 .products-background {
-  background-image: url("public/bg_about.webp");
+  background-image: url('public/bg_about.webp');
   width: 100%;
   height: 40vh;
   background-repeat: no-repeat;
