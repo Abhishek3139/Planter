@@ -1,11 +1,12 @@
-import Banner from '../../banner';
-import { TrendingPlants } from '../../trendingPlants';
-import SinglePlant from '../../singlePlant';
-import { PlantCare } from '../../plantCare';
-import { AllPlants } from '../../allPlants';
-import { Products } from '../products';
-import { Benefits } from '../../benefits';
-import { Footer } from '../../footer';
+import { AllPlants } from '../../components/allPlants';
+import Banner from '../../components/banner';
+import { Benefits } from '../../components/benefits';
+import { Footer } from '../../components/footer';
+import { PlantCare } from '../../components/plantCare';
+import { TopProducts } from '../../components/products';
+import SinglePlant from '../../components/singlePlant';
+import { TrendingPlants } from '../../components/trendingPlants';
+
 // import { Blog } from "../../blog";
 export function Home() {
   return (
@@ -21,7 +22,7 @@ export function Home() {
       >
         <AllPlants />
       </TrendingPlants>
-      <Products />
+      <TopProducts />
       <Benefits />
       <TrendingPlants smallHeading='Free Shipping' heading='Top Trending Plants' />
       {/* <Blog /> */}

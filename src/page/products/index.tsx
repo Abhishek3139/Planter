@@ -1,7 +1,7 @@
 // import * as React from "react";
 
-import { Filters } from '../../filters';
-import { Pagination } from '../../pagination';
+import { Filters } from '../../components/filters';
+import { Pagination } from '../../components/pagination';
 
 // export interface IAppProps {}
 const products = [

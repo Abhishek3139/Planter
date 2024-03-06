@@ -56,7 +56,7 @@ const products = [
     imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
   },
 ];
-export function Products() {
+export function TopProducts() {
   return (
     <>
       {/* <FilterProducts /> */}

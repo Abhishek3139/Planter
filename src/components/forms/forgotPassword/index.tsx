@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 export interface IAppProps {}
 
-export function ForgotPassword(props: IAppProps) {
-  const navigate = useNavigate();
+export function ForgotPassword() {
+  // const navigate = useNavigate();
 
   return (
     <>

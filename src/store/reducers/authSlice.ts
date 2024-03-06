@@ -1,43 +1,46 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { encryptData } from '../../utils/utils';
 import { RootState } from '../store';
-
-interface UserData {
-  _id: string;
-  name: string;
-  email: string;
-  role: string;
-}
-
-interface AuthState {
-  isLoading: boolean;
-  user: UserData | null;
-  error: string | null;
-  isLoggedIn: boolean;
-}
+import {
+  AuthState,
+  LoginResponse,
+  RegisterResponse,
+  userCredentialsLogin,
+  userCredentialsRegister,
+} from '../../modals/authModals';
+import { commonApi } from '../../api/commonApi';
 
 const initialState: AuthState = {
   isLoading: false,
   user: null,
   error: null,
   isLoggedIn: false,
+  isRegistered: false,
 };
-
-export interface ErrorState {
-  status: string;
-  message: string;
-}
+export const RegisterUser = createAsyncThunk(
+  'auth/registerUser',
+  async (userCredentialsRegister: userCredentialsRegister, thunkAPI) => {
+    try {
+      const response: RegisterResponse = await commonApi.postData(
+        'api/v1/users/signup',
+        userCredentialsRegister,
+      );
+      return response.data.data.user; // assuming the response contains user data
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response);
+    }
+  },
+);
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
-  async (userCredentials: { email: string; password: string }, thunkAPI) => {
+  async (userCredentialsLogin: userCredentialsLogin, thunkAPI) => {
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_BASE_URL}api/v1/users/login`,
-        userCredentials,
+      const response: LoginResponse = await commonApi.postData(
+        'api/v1/users/login',
+        userCredentialsLogin,
       );
       encryptData('token', response.data.token);
-      return response.data; // assuming the response contains user data
+      return response.data.data.data.user; // assuming the response contains user data
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response);
     }
@@ -49,7 +52,22 @@ export const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    //register
     builder
+      .addCase(RegisterUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(RegisterUser.fulfilled, (state, action: any) => {
+        state.isLoading = false;
+        state.user = action.payload.data;
+        state.isRegistered = true;
+      })
+      .addCase(RegisterUser.rejected, (state) => {
+        // debugger;
+        state.isLoading = false;
+      })
+
+      //login
       .addCase(loginUser.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -62,7 +80,6 @@ export const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(loginUser.rejected, (state, action: PayloadAction<any>) => {
-        // debugger;
         state.isLoading = false;
         state.error = action.payload.data.message;
       });
@@ -71,6 +88,8 @@ export const authSlice = createSlice({
 
 // selectors
 export const selectIsLoggedIn = (state: RootState) => state.auth.isLoggedIn;
+export const selectIsRegistered = (state: RootState) => state.auth.isRegistered;
+
 export const selectLoginError = (state: RootState) => state.auth.error;
 
 export const authReducer = authSlice.reducer;

@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import { Home } from '../page/home';
 import SingleProduct from '../singleProduct';
-import { Products } from '../products';
 import ProtectedRoute from '../../protectedRoutes';
 import Navbar from '../nabvar';
 import Sidebar from '../sidebar';
 import { Cart } from '../cart';
 import { useState } from 'react';
+import { Home } from '../../page/home';
+import { Products } from '../../page/products';
 
 function MainLayoutRoutes() {
   const [showSidebar, setShowSidebar] = useState(false);

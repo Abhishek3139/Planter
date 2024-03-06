@@ -1,4 +1,21 @@
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { RegisterUser, selectIsRegistered } from '../../../store/reducers/authSlice';
+import { RegisterInputs } from '../../../modals/registerModal';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
 export default function Signup() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm<RegisterInputs>();
+  const isRegistered = useAppSelector(selectIsRegistered);
+  const handleRegister: SubmitHandler<RegisterInputs> = (data) => {
+    dispatch(RegisterUser(data));
+  };
+  useEffect(() => {
+    if (isRegistered) navigate('/thankYou');
+  }, [isRegistered, navigate]);
   return (
     <>
       <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
@@ -14,7 +31,7 @@ export default function Signup() {
         </div>
 
         <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-          <form className='space-y-6' action='#' method='POST'>
+          <form className='space-y-6' onSubmit={handleSubmit(handleRegister)}>
             <div>
               <label
                 htmlFor='name'
@@ -25,9 +42,7 @@ export default function Signup() {
               <div className='mt-2'>
                 <input
                   id='name'
-                  name='name'
-                  type='text'
-                  required
+                  {...register('name', { required: true })}
                   placeholder='Please enter your name here'
                   className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                 />
@@ -43,10 +58,7 @@ export default function Signup() {
               <div className='mt-2'>
                 <input
                   id='email'
-                  name='email'
-                  type='email'
-                  autoComplete='email'
-                  required
+                  {...register('email', { required: true })}
                   placeholder='Please enter your email here'
                   className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                 />
@@ -65,11 +77,8 @@ export default function Signup() {
               <div className='mt-2'>
                 <input
                   id='password'
-                  name='password'
-                  type='password'
-                  autoComplete='current-password'
+                  {...register('password', { required: true })}
                   placeholder='Please enter your password here'
-                  required
                   className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                 />
               </div>
@@ -84,11 +93,8 @@ export default function Signup() {
               <div className='mt-2'>
                 <input
                   id='confirmPassword'
-                  name='confirmPassword'
-                  type='password'
-                  autoComplete='current-password'
+                  {...register('passwordConfirm', { required: true })}
                   placeholder='Please enter your confirm password here'
-                  required
                   className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                 />
               </div>
