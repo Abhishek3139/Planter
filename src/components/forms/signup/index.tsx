@@ -1,21 +1,28 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { RegisterUser, selectIsRegistered } from '../../../store/reducers/authSlice';
+import { selectIsRegistered, selectLoginLoading } from '../../../store/reducers/authSlice';
 import { RegisterInputs } from '../../../modals/registerModal';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { RegisterUser } from '../../../store/thunkApi/authApi';
+import { PlantLoader } from '../../loaders/plantLoader';
 
 export default function Signup() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<RegisterInputs>();
   const isRegistered = useAppSelector(selectIsRegistered);
+  const isLoading = useAppSelector(selectLoginLoading);
+
   const handleRegister: SubmitHandler<RegisterInputs> = (data) => {
     dispatch(RegisterUser(data));
   };
   useEffect(() => {
     if (isRegistered) navigate('/thankYou');
   }, [isRegistered, navigate]);
+
+  if (isLoading) return <PlantLoader />;
+
   return (
     <>
       <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>

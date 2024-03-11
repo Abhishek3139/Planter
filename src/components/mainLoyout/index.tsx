@@ -28,7 +28,7 @@ function MainLayoutRoutes() {
       <Routes>
         <Route path='/' element={<ProtectedRoute />}>
           <Route path='/' element={<Home />} />
-          <Route path='/product' element={<SingleProduct />}></Route>
+          <Route path='/product/:id' element={<SingleProduct />}></Route>
           <Route path='/products' element={<Products />}></Route>
         </Route>
       </Routes>

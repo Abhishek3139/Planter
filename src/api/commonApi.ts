@@ -1,10 +1,19 @@
 import { axiosClient } from './axiosClient';
 const rootUrl: string = import.meta.env.VITE_BACKEND_BASE_URL;
-
+export interface ParamsTypes {
+  page?: number;
+  limit?: number;
+  sort?: string;
+}
 export const commonApi = {
-  getData(url: string) {
+  getData(url: string, params?: ParamsTypes) {
     return axiosClient.get(`${url}`, {
       baseURL: rootUrl,
+      params: {
+        limit: params?.limit,
+        page: params?.page,
+        sort: params?.sort,
+      },
     });
   },
   postData(url: string, data: unknown) {

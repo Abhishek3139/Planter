@@ -42,15 +42,14 @@ export interface LoginResponse {
     status: string;
     token: string;
     message: string;
+
     data: {
-      data: {
-        user: {
-          name: string;
-          email: string;
-          role: string;
-          _id: string;
-          active: boolean;
-        };
+      user: {
+        name: string;
+        email: string;
+        role: string;
+        _id: string;
+        active: boolean;
       };
     };
   };

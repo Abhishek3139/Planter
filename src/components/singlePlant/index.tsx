@@ -7,7 +7,12 @@ import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 // import required modules
 import { Autoplay } from 'swiper/modules';
-const SinglePlant = () => {
+import { SinglePlantType } from '../../modals/plantsModal';
+interface Iprops {
+  allPlants: Array<SinglePlantType>;
+}
+
+const SinglePlant = ({ allPlants }: Iprops) => {
   const navigate = useNavigate();
   return (
     <div className='m-4 lg:mb-30'>
@@ -36,48 +41,23 @@ const SinglePlant = () => {
           },
         }}
       >
-        <SwiperSlide>
-          <div onClick={() => navigate('/product')}>
-            <img src='public/p1.jpg' alt='plant' className='' />
-            <p className='m-3'>Italian Stone Pine</p>
-            <span>200$</span>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div onClick={() => navigate('/product')}>
-            <img src='public/p2.jpg' alt='plant' className='' />
-            <p className='m-3'>Aloe</p>
-            <span>200$</span>
-          </div>
-        </SwiperSlide>{' '}
-        <SwiperSlide>
-          <div onClick={() => navigate('/product')}>
-            <img src='public/p1.jpg' alt='plant' className='' />
-            <p className='m-3'>Italian Stone Pine</p>
-            <span>200$</span>
-          </div>
-        </SwiperSlide>{' '}
-        <SwiperSlide>
-          <div onClick={() => navigate('/product')}>
-            <img src='public/p2.jpg' alt='plant' className='' />
-            <p className='m-3'>Aloe</p>
-            <span>200$</span>
-          </div>
-        </SwiperSlide>{' '}
-        <SwiperSlide>
-          <div onClick={() => navigate('/product')}>
-            <img src='public/p1.jpg' alt='plant' className='' />
-            <p className='m-3'>Italian Stone Pine</p>
-            <span>200$</span>
-          </div>
-        </SwiperSlide>{' '}
-        <SwiperSlide>
-          <div onClick={() => navigate('/product')}>
-            <img src='public/p2.jpg' alt='plant' className='' />
-            <p className='m-3'>Aloe</p>
-            <span>200$</span>
-          </div>
-        </SwiperSlide>
+        {allPlants &&
+          allPlants.length &&
+          allPlants.map((plant, index) => {
+            return (
+              <SwiperSlide key={index}>
+                <div onClick={() => navigate(`/product/${plant._id}`, { state: plant })}>
+                  <img
+                    src={plant.images[0]}
+                    alt={plant.name}
+                    className='h-[420px] w-[340px] object-fill'
+                  />
+                  <p className='m-3'>{plant.name}</p>
+                  <span>{plant.price}</span>
+                </div>
+              </SwiperSlide>
+            );
+          })}
       </Swiper>
     </div>
   );

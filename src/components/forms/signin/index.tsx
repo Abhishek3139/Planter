@@ -1,8 +1,14 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { loginUser, selectIsLoggedIn, selectLoginError } from '../../../store/reducers/authSlice';
+import {
+  selectIsLoggedIn,
+  selectLoginError,
+  selectLoginLoading,
+} from '../../../store/reducers/authSlice';
 import { useEffect } from 'react';
+import { loginUser } from '../../../store/thunkApi/authApi';
+import { PlantLoader } from '../../loaders/plantLoader';
 type Inputs = {
   email: string;
   password: string;
@@ -13,7 +19,7 @@ export default function Signin() {
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const loginError = useAppSelector(selectLoginError);
-
+  const isLoading = useAppSelector(selectLoginLoading);
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     dispatch(loginUser(data));
@@ -23,6 +29,7 @@ export default function Signin() {
   useEffect(() => {
     if (isLoggedIn) navigate('/');
   }, [isLoggedIn, navigate]);
+  if (isLoading) return <PlantLoader />;
   return (
     <>
       <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>

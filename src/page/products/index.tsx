@@ -1,84 +1,23 @@
-// import * as React from "react";
-
+import { useNavigate } from 'react-router-dom';
 import { Filters } from '../../components/filters';
 import { Pagination } from '../../components/pagination';
-
-// export interface IAppProps {}
-const products = [
-  {
-    id: 1,
-    name: 'Echeveria Succulent',
-    href: '#',
-    imageSrc: 'public/singlePlant/pro-8.jpg',
-    imageAlt: 'Echeveria Succulent',
-    price: '$100',
-  },
-  {
-    id: 2,
-    name: 'Echeveria Succulent',
-    href: '#',
-    imageSrc: 'public/singlePlant/pro-8.jpg',
-    imageAlt: 'Echeveria Succulent',
-    price: '$100',
-  },
-  {
-    id: 3,
-    name: 'Echeveria Succulent',
-    href: '#',
-    imageSrc: 'public/singlePlant/pro-8.jpg',
-    imageAlt: 'Echeveria Succulent',
-    price: '$100',
-  },
-  {
-    id: 4,
-    name: 'Echeveria Succulent',
-    href: '#',
-    imageSrc: 'public/singlePlant/pro-8.jpg',
-    imageAlt: 'Echeveria Succulent',
-    price: '$100',
-  },
-  {
-    id: 1,
-    name: 'Echeveria Succulent',
-    href: '#',
-    imageSrc: 'public/singlePlant/pro-8.jpg',
-    imageAlt: 'Echeveria Succulent',
-    price: '$100',
-  },
-  {
-    id: 2,
-    name: 'Echeveria Succulent',
-    href: '#',
-    imageSrc: 'public/singlePlant/pro-8.jpg',
-    imageAlt: 'Echeveria Succulent',
-    price: '$100',
-  },
-  {
-    id: 3,
-    name: 'Echeveria Succulent',
-    href: '#',
-    imageSrc: 'public/singlePlant/pro-8.jpg',
-    imageAlt: 'Echeveria Succulent',
-    price: '$100',
-  },
-  {
-    id: 4,
-    name: 'Echeveria Succulent',
-    href: '#',
-    imageSrc: 'public/singlePlant/pro-8.jpg',
-    imageAlt: 'Echeveria Succulent',
-    price: '$100',
-  },
-  {
-    id: 1,
-    name: 'Echeveria Succulent',
-    href: '#',
-    imageSrc: 'public/singlePlant/pro-8.jpg',
-    imageAlt: 'Echeveria Succulent',
-    price: '$100',
-  },
-];
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { selectAllPlants, selectIsLoading } from '../../store/reducers/plantSlice';
+import { GetAllPlants } from '../../store/thunkApi/plantsApi';
+import { useState } from 'react';
+import { PlantLoader } from '../../components/loaders/plantLoader';
 export function Products() {
+  const allPlants = useAppSelector(selectAllPlants);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [currentPageNumber, setCurrentpageNumber] = useState(1);
+  const isLoading = useAppSelector(selectIsLoading);
+  const handleSelectFilter = (value: string) => {
+    dispatch(GetAllPlants({ page: currentPageNumber, limit: 9, sort: value }));
+  };
+  // if (isLoading) {
+  //   return <PlantLoader />;
+  // }
   return (
     <>
       <div className='products-background p-16'>
@@ -157,43 +96,55 @@ export function Products() {
               FILTERS
             </div>
             <div>
-              <select className='px-3 py-2 border-solid border border-[#b0b0b0] max-w-full text-sm'>
-                <option>Best Selling</option>
-                <option>Featured</option>
-                <option>Alphabetically, A-Z</option>
-                <option>Alphabetically, Z-A</option>
-                <option>Price, low to high</option>
-                <option>Price, high to low</option>
+              <select
+                className='px-3 py-2 border-solid border border-[#b0b0b0] max-w-full text-sm'
+                onChange={(e) => handleSelectFilter(e.target.value)}
+              >
+                {/* <option>Best Selling</option> */}
+                {/* <option>Featured</option> */}
+                <option value={'name'}>Alphabetically, A-Z</option>
+                <option value={'-name'}>Alphabetically, Z-A</option>
+                <option value={'price'}>Price, low to high</option>
+                <option value={'-price'}>Price, high to low</option>
               </select>
             </div>
           </div>
           <div className='mt-6 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-3 xl:gap-x-8'>
-            {products.map((product) => (
-              <div key={product.id} className='group relative'>
-                <div className='aspect-h-1 aspect-w-1 w-full overflow-hidden  bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80'>
-                  <img
-                    src={product.imageSrc}
-                    alt={product.imageAlt}
-                    className='h-full w-full object-cover object-center lg:h-full lg:w-full'
-                  />
-                </div>
-                <div className='mt-4  md:flex md:justify-between'>
-                  <div>
-                    <h3 className='text-sm text-gray-700'>
-                      <a href={product.href}>
-                        <span aria-hidden='true' className='absolute inset-0' />
-                        {product.name}
-                      </a>
-                    </h3>
+            {allPlants &&
+              allPlants.map((product) => (
+                <div
+                  key={product._id}
+                  className='group relative'
+                  onClick={() => navigate(`/product/${product._id}`, { state: product })}
+                >
+                  <div className='aspect-h-1 aspect-w-1 w-full overflow-hidden  bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80'>
+                    <img
+                      src={product.images[0]}
+                      alt={product.name}
+                      className='h-full w-full object-cover object-center lg:h-full lg:w-full'
+                    />
                   </div>
-                  <p className='text-sm font-medium text-gray-900'>{product.price}</p>
+                  <div className='mt-4  md:flex md:justify-between'>
+                    <div>
+                      <h3 className='text-sm text-gray-700'>
+                        <a>
+                          <span aria-hidden='true' className='absolute inset-0' />
+                          {product.name}
+                        </a>
+                      </h3>
+                    </div>
+                    <p className='text-sm font-medium text-gray-900'>{product.price}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </div>
-      <Pagination />
+      <Pagination
+        allPlantsLength={allPlants.length}
+        currentPageNumber={currentPageNumber}
+        setCurrentpageNumber={setCurrentpageNumber}
+      />
     </>
   );
 }
