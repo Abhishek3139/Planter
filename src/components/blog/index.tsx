@@ -25,7 +25,7 @@ const callouts = [
   },
 ];
 
-export default function Blod() {
+export default function Blog() {
   return (
     <div className='bg-gray-100 mr-3 ml-3'>
       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>

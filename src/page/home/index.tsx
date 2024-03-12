@@ -10,8 +10,8 @@ import { TrendingPlants } from '../../components/trendingPlants';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { GetAllPlants } from '../../store/thunkApi/plantsApi';
 import { selectAllPlants } from '../../store/reducers/plantSlice';
+import Blog from '../../components/blog';
 
-// import { Blog } from "../../blog";
 export function Home() {
   const dispatch = useAppDispatch();
   const allPlants = useAppSelector(selectAllPlants);
@@ -32,10 +32,12 @@ export function Home() {
       >
         <AllPlants />
       </TrendingPlants>
-      <TopProducts />
+      <TrendingPlants smallHeading='Free Shipping' heading='Top Cheapest Plants'>
+        <TopProducts />
+      </TrendingPlants>
       <Benefits />
       <TrendingPlants smallHeading='Free Shipping' heading='Top Trending Plants' />
-      {/* <Blog /> */}
+      <Blog />
       <Footer />
     </>
   );

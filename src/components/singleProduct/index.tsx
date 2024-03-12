@@ -45,7 +45,6 @@ function classNames(...classes: string[]) {
 export default function SingleProduct() {
   const dispatch = useAppDispatch();
   const loaction = useLocation();
-  // const cart = useAppSelector(selectCart);
   const [quantity, setQuantity] = useState(1);
 
   const { name, images, description, price, _id: id }: SinglePlantType = loaction.state;
@@ -71,9 +70,7 @@ export default function SingleProduct() {
       setQuantity(quantity - 1);
     }
   };
-  // useEffect(() => {
-  //   if (quantity) dispatch(cartActions.updateProductQuantity({ quantity, id }));
-  // }, [quantity]);
+
   return (
     <div className='bg-white'>
       <div className='pt-6'>

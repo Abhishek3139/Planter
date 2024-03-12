@@ -14,6 +14,7 @@ export interface PlantState {
   isLoading: boolean;
   error: unknown;
   plants: Array<SinglePlantType>;
+  topCheapestPlants: Array<SinglePlantType>;
 }
 
 export interface AllPlantsResponse {

@@ -39,15 +39,31 @@ export const cartSlice = createSlice({
       state.totalCartItems = cartItems;
     },
 
-    // removeCartProduct: (state, action) => {
-    //   //   state.cart.push(action.payload);
-    // },
-    updateProductQuantity: (state, action: PayloadAction<{ quantity: number; id: string }>) => {
+    removeCartProduct: (
+      state,
+      action: PayloadAction<{ id: string; cartQuantity: number; price: number }>,
+    ) => {
+      state.totalCartItems = state.totalCartItems - action.payload.cartQuantity;
+      state.cartTotal = state.cartTotal - action.payload.price * action.payload.cartQuantity;
+      state.cart = state.cart.filter((item) => item.id !== action.payload.id);
+    },
+    updateProductQuantity: (
+      state,
+      action: PayloadAction<{
+        quantity: number;
+        id: string;
+        totalCartItems?: number;
+        cartTotal?: number;
+      }>,
+    ) => {
       const productIndex = state.cart.findIndex((value) => value.id === action.payload.id);
       if (productIndex >= 0) {
         state.cart[productIndex].cartQuantity = action.payload.quantity;
+        if (action.payload.totalCartItems && action.payload.cartTotal) {
+          state.totalCartItems = action.payload.totalCartItems;
+          state.cartTotal = action.payload.cartTotal;
+        }
       }
-      // console.log(action.payload);
     },
   },
 });

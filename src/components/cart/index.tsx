@@ -3,17 +3,47 @@ import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../store/hooks';
-import { selectCart, selectCartTotal } from '../../store/reducers/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import {
+  cartActions,
+  selectCart,
+  selectCartTotal,
+  selectTotalCartItems,
+} from '../../store/reducers/cartSlice';
 export interface IAppProps {
   open: boolean;
   setOpen: (open: boolean) => void;
 }
 
 export function Cart({ open, setOpen }: IAppProps) {
+  const dispatch = useAppDispatch();
   const cart = useAppSelector(selectCart);
   const cartTotal = useAppSelector(selectCartTotal);
+  const totalCartItems = useAppSelector(selectTotalCartItems);
 
+  const handleIncQuantity = (quantity: number, productId: string, price: number) => {
+    if (quantity)
+      dispatch(
+        cartActions.updateProductQuantity({
+          quantity,
+          id: productId,
+          totalCartItems: totalCartItems + 1,
+          cartTotal: cartTotal + price,
+        }),
+      );
+  };
+  const handleDecQuantity = (quantity: number, productId: string, price: number) => {
+    if (quantity >= 1) {
+      dispatch(
+        cartActions.updateProductQuantity({
+          quantity,
+          id: productId,
+          totalCartItems: totalCartItems - 1,
+          cartTotal: cartTotal - price,
+        }),
+      );
+    }
+  };
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as='div' className='relative z-10' onClose={setOpen}>
@@ -87,13 +117,47 @@ export function Cart({ open, setOpen }: IAppProps) {
                                       </div>
                                       {/* <p className='mt-1 text-sm text-gray-500'>{product.color}</p> */}
                                     </div>
+
                                     <div className='flex flex-1 items-end justify-between text-sm'>
+                                      <button
+                                        className='text-gray-500'
+                                        onClick={() =>
+                                          handleDecQuantity(
+                                            product.cartQuantity - 1,
+                                            product.id,
+                                            product.price,
+                                          )
+                                        }
+                                      >
+                                        -
+                                      </button>
                                       <p className='text-gray-500'>Qty {product.cartQuantity}</p>
+                                      <button
+                                        className='text-gray-500'
+                                        onClick={() =>
+                                          handleIncQuantity(
+                                            product.cartQuantity + 1,
+                                            product.id,
+                                            product.price,
+                                          )
+                                        }
+                                      >
+                                        +
+                                      </button>
 
                                       <div className='flex'>
                                         <button
                                           type='button'
                                           className='font-medium text-indigo-600 hover:text-indigo-500'
+                                          onClick={() =>
+                                            dispatch(
+                                              cartActions.removeCartProduct({
+                                                id: product.id,
+                                                cartQuantity: product.cartQuantity,
+                                                price: product.price,
+                                              }),
+                                            )
+                                          }
                                         >
                                           Remove
                                         </button>
@@ -104,6 +168,7 @@ export function Cart({ open, setOpen }: IAppProps) {
                               ))}
                           </ul>
                         </div>
+                        {!cart.length && <div>Your cart is empty</div>}
                       </div>
                     </div>
 

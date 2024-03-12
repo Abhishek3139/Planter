@@ -2,16 +2,14 @@ import { useNavigate } from 'react-router-dom';
 import { Filters } from '../../components/filters';
 import { Pagination } from '../../components/pagination';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { selectAllPlants, selectIsLoading } from '../../store/reducers/plantSlice';
+import { selectAllPlants } from '../../store/reducers/plantSlice';
 import { GetAllPlants } from '../../store/thunkApi/plantsApi';
 import { useState } from 'react';
-import { PlantLoader } from '../../components/loaders/plantLoader';
 export function Products() {
   const allPlants = useAppSelector(selectAllPlants);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [currentPageNumber, setCurrentpageNumber] = useState(1);
-  const isLoading = useAppSelector(selectIsLoading);
   const handleSelectFilter = (value: string) => {
     dispatch(GetAllPlants({ page: currentPageNumber, limit: 9, sort: value }));
   };
