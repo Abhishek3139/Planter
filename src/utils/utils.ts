@@ -1,4 +1,5 @@
 import CryptoJS from 'crypto-js';
+import { toast } from 'react-toastify';
 const secretKey = import.meta.env.VITE_SECRET;
 const saveCookie = (cookieName: string, cookieValue: unknown) => {
   //setting cookie with expiry time
@@ -50,29 +51,28 @@ export const useAuth = () => {
     };
   }
 };
-// import { toast } from "react-toastify";
 
-// export const sucessToast = (message: string) =>
-//   toast.success(message, { position: "top-center" });
-//   export const successMsg = (message) => {
-//     toast.success(message, {
-//       position: "top-center",
-//       autoClose: 5000,
-//       hideProgressBar: false,
-//       closeOnClick: true,
-//       pauseOnHover: true,
-//       draggable: true,
-//       progress: undefined,
-//       theme: "light",
-//     });
-//   };
-//   export const errorMsg = (message, isAccessMessage) => {
-//     toast.error(isAccessMessage ? `You have no access to ${message}` : message, {
-//       position: "top-center",
-//       autoClose: 5000,
-//       hideProgressBar: false,
-//       closeOnClick: true,
-//       pauseOnHover: true,
-//       draggable: true,
-//       progress: undefined,
-//       theme: "light",
+export const successMsg = (message: string) => {
+  toast.success(message, {
+    position: 'top-center',
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'light',
+  });
+};
+export const errorMsg = (message: string) => {
+  toast.error(message, {
+    position: 'top-center',
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'light',
+  });
+};

@@ -10,7 +10,12 @@ import { PlantLoader } from '../../loaders/plantLoader';
 export default function Signup() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<RegisterInputs>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<RegisterInputs>();
   const isRegistered = useAppSelector(selectIsRegistered);
   const isLoading = useAppSelector(selectLoginLoading);
 
@@ -49,10 +54,11 @@ export default function Signup() {
               <div className='mt-2'>
                 <input
                   id='name'
-                  {...register('name', { required: true })}
+                  {...register('name', { required: 'Name is required' })}
                   placeholder='Please enter your name here'
                   className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                 />
+                <div className='text-red-500 text-left'>{errors.name && errors?.name?.message}</div>
               </div>
             </div>
             <div>
@@ -65,10 +71,13 @@ export default function Signup() {
               <div className='mt-2'>
                 <input
                   id='email'
-                  {...register('email', { required: true })}
+                  {...register('email', { required: 'Email Address is required' })}
                   placeholder='Please enter your email here'
                   className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                 />
+                <div className='text-red-500 text-left'>
+                  {errors.email && errors?.email?.message}
+                </div>
               </div>
             </div>
 
@@ -84,10 +93,13 @@ export default function Signup() {
               <div className='mt-2'>
                 <input
                   id='password'
-                  {...register('password', { required: true })}
+                  {...register('password', { required: 'Password is required' })}
                   placeholder='Please enter your password here'
                   className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                 />
+                <div className='text-red-500 text-left'>
+                  {errors.password && errors?.password?.message}
+                </div>
               </div>
             </div>
             <div>
@@ -100,10 +112,20 @@ export default function Signup() {
               <div className='mt-2'>
                 <input
                   id='confirmPassword'
-                  {...register('passwordConfirm', { required: true })}
+                  {...register('passwordConfirm', {
+                    required: 'Confirm Password is required',
+                    validate: (val: string) => {
+                      if (watch('password') != val) {
+                        return 'Your passwords do no match';
+                      }
+                    },
+                  })}
                   placeholder='Please enter your confirm password here'
                   className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                 />
+                <div className='text-red-500 text-left'>
+                  {errors.passwordConfirm && errors?.passwordConfirm?.message}
+                </div>
               </div>
             </div>
 

@@ -20,11 +20,14 @@ export default function Signin() {
   const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const loginError = useAppSelector(selectLoginError);
   const isLoading = useAppSelector(selectLoginLoading);
-  const { register, handleSubmit } = useForm<Inputs>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     dispatch(loginUser(data));
   };
-  console.log(loginError);
 
   useEffect(() => {
     if (isLoggedIn) navigate('/');
@@ -54,13 +57,15 @@ export default function Signin() {
                 Email address
               </label>
               <div className='mt-2'>
-                {/* <input defaultValue="test" {...register("example")} /> */}
                 <input
                   id='email'
-                  {...register('email', { required: true })}
+                  {...register('email', { required: 'Email Address is required' })}
                   placeholder='Please enter your email here'
                   className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                 />
+                <div className='text-red-500 text-left'>
+                  {errors.email && errors?.email?.message}
+                </div>
               </div>
             </div>
 
@@ -76,10 +81,13 @@ export default function Signin() {
               <div className='mt-2'>
                 <input
                   id='password'
-                  {...register('password', { required: true })}
+                  {...register('password', { required: 'Password is required' })}
                   placeholder='Please enter your password here'
                   className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
                 />
+                <div className='text-red-500 text-left'>
+                  {errors.password && errors?.password?.message}
+                </div>
               </div>
             </div>
             <div className='font-semibold text-indigo-600 hover:text-indigo-500'>

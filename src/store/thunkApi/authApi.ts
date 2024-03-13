@@ -6,7 +6,7 @@ import {
   userCredentialsRegister,
 } from '../../modals/authModals';
 import { commonApi } from '../../api/commonApi';
-import { encryptData } from '../../utils/utils';
+import { encryptData, errorMsg } from '../../utils/utils';
 
 export const RegisterUser = createAsyncThunk(
   'auth/registerUser',
@@ -18,7 +18,12 @@ export const RegisterUser = createAsyncThunk(
       );
       return response.data.data.user; // assuming the response contains user data
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response);
+      if (error.response.data.message.includes('email_1 dup key')) {
+        errorMsg('Email already exists');
+      } else {
+        errorMsg(error.response.data.message);
+      }
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   },
 );
@@ -33,7 +38,8 @@ export const loginUser = createAsyncThunk(
       encryptData('token', response.data.token);
       return response.data.data.user; // assuming the response contains user data
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response);
+      errorMsg(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   },
 );

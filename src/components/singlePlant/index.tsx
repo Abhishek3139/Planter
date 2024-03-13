@@ -8,14 +8,19 @@ import 'swiper/css/pagination';
 // import required modules
 import { Autoplay } from 'swiper/modules';
 import { SinglePlantType } from '../../modals/plantsModal';
+import DivLoader from '../loaders/divLoader';
+import { useAppSelector } from '../../store/hooks';
+import { selectIsLoading } from '../../store/reducers/plantSlice';
 interface Iprops {
   allPlants: Array<SinglePlantType>;
 }
 
 const SinglePlant = ({ allPlants }: Iprops) => {
   const navigate = useNavigate();
+  const isLoading = useAppSelector(selectIsLoading);
   return (
     <div className='m-4 lg:mb-30'>
+      {isLoading && <DivLoader />}
       <Swiper
         slidesPerView={1}
         spaceBetween={30}
@@ -42,7 +47,6 @@ const SinglePlant = ({ allPlants }: Iprops) => {
         }}
       >
         {allPlants &&
-          allPlants.length &&
           allPlants.map((plant, index) => {
             return (
               <SwiperSlide key={index}>

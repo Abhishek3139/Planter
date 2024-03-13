@@ -13,9 +13,7 @@ export function Products() {
   const handleSelectFilter = (value: string) => {
     dispatch(GetAllPlants({ page: currentPageNumber, limit: 9, sort: value }));
   };
-  // if (isLoading) {
-  //   return <PlantLoader />;
-  // }
+
   return (
     <>
       <div className='products-background p-16'>
