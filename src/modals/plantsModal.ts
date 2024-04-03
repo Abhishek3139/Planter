@@ -20,7 +20,7 @@ export interface PlantState {
 export interface AllPlantsResponse {
   data: {
     data: {
-      plants: Array<SinglePlantType>;
+      doc: Array<SinglePlantType>;
     };
   };
 }

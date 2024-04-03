@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { GetAllPlants } from '../../store/thunkApi/plantsApi';
 import { selectAllPlants } from '../../store/reducers/plantSlice';
 import Blog from '../../components/blog';
+import OurBlog from '../../components/ourBlog';
 
 export function Home() {
   const dispatch = useAppDispatch();
@@ -24,6 +25,9 @@ export function Home() {
       <Banner />
       <TrendingPlants smallHeading='Free Shipping' heading='Top Trending Plants'>
         <SinglePlant allPlants={allPlants} />
+      </TrendingPlants>
+      <TrendingPlants smallHeading='' heading='Our Blog'>
+        <OurBlog />
       </TrendingPlants>
       <PlantCare />
       <TrendingPlants

@@ -7,6 +7,7 @@ import { GetAllPlants } from '../../store/thunkApi/plantsApi';
 import { useState } from 'react';
 export function Products() {
   const allPlants = useAppSelector(selectAllPlants);
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [currentPageNumber, setCurrentpageNumber] = useState(1);
