@@ -15,10 +15,10 @@ function OurBlog() {
         </div>
 
         <div className='m-8 lg:m-4 md:m-3'>
-          <img src='public/static/blog\blog12_1024x1024.webp' alt='ourblog' />
+          <img src='public/static/images/blog\blog12_1024x1024.webp' alt='ourblog' />
         </div>
         <div className='m-8 lg:m-4 md:m-3'>
-          <img src='public/static/blog\blog11_1024x1024.webp' alt='ourblog' />
+          <img src='public/static/images/blog\blog11_1024x1024.webp' alt='ourblog' />
         </div>
         <div className='m-8 lg:m-4 md:m-3'>
           <h2 className='text-2xl font-bold my-10 text-left lg:my-6 md:my-3 md:text-xl'>
@@ -35,7 +35,7 @@ function OurBlog() {
 
       <div className='md:hidden my-8'>
         <div className=''>
-          <img src='public/static/blog\blog12_1024x1024.webp' alt='ourblog' />
+          <img src='public/static/images/blog\blog12_1024x1024.webp' alt='ourblog' />
         </div>
         <div className='my-8'>
           <h2 className='text-2xl font-bold text-left my-4'>
@@ -50,7 +50,7 @@ function OurBlog() {
         </div>
 
         <div className=''>
-          <img src='public/static/blog\blog11_1024x1024.webp' alt='ourblog' />
+          <img src='public/static/images/blog\blog11_1024x1024.webp' alt='ourblog' />
         </div>
         <div className='my-8'>
           <h2 className='text-2xl font-bold text-left my-4'>
