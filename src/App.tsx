@@ -7,6 +7,8 @@ import MainLayoutRoutes from './components/mainLoyout';
 import { ThankYou } from './components/thankYou';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PaymentSuccess from './page/paymentSuccess/inde';
+import PaymentFailed from './page/paymentFailed';
 function App() {
   return (
     <BrowserRouter>
@@ -29,6 +31,9 @@ function App() {
         <Route path='/signup' element={<Signup />}></Route>
         <Route path='/forgotPassword' element={<ForgotPassword />}></Route>
         <Route path='/thankYou' element={<ThankYou />}></Route>
+        <Route path='/payment-success' element={<PaymentSuccess />}></Route>
+        <Route path='/payment-failed' element={<PaymentFailed />}></Route>
+
         {/* <Route path='/product' element={<SingleProduct />}></Route> */}
 
         {/* <Route

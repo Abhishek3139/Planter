@@ -1,15 +1,17 @@
 // import * as React from 'react';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
   cartActions,
   selectCart,
   selectCartTotal,
+  selectStripeData,
   selectTotalCartItems,
 } from '../../store/reducers/cartSlice';
+import { GetStripeUrl } from '../../store/thunkApi/stripeApi';
 export interface IAppProps {
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -17,9 +19,11 @@ export interface IAppProps {
 
 export function Cart({ open, setOpen }: IAppProps) {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const cart = useAppSelector(selectCart);
   const cartTotal = useAppSelector(selectCartTotal);
   const totalCartItems = useAppSelector(selectTotalCartItems);
+  const stripeData = useAppSelector(selectStripeData);
 
   const handleIncQuantity = (quantity: number, productId: string, price: number) => {
     if (quantity)
@@ -44,6 +48,19 @@ export function Cart({ open, setOpen }: IAppProps) {
       );
     }
   };
+
+  const handleCheckout = () => {
+    const payload = {
+      product: cart,
+    };
+    dispatch(GetStripeUrl(payload));
+  };
+
+  useEffect(() => {
+    if (stripeData && stripeData.session) {
+      window.location = stripeData.session.url;
+    }
+  }, [stripeData]);
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as='div' className='relative z-10' onClose={setOpen}>
@@ -182,7 +199,7 @@ export function Cart({ open, setOpen }: IAppProps) {
                       </p>
                       <div className='mt-6'>
                         <a
-                          href='#'
+                          onClick={handleCheckout}
                           className='flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700'
                         >
                           Checkout

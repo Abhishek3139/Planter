@@ -1,16 +1,21 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { CartItems } from '../../modals/cartModals';
+import { GetStripeUrl } from '../thunkApi/stripeApi';
 // import { Products } from '../../page/products';
 interface IStateType {
   cart: Array<CartItems>;
   totalCartItems: number;
   cartTotal: number;
+  isLoading: boolean;
+  stripeUrlData: unknown;
 }
 const initialState: IStateType = {
   cart: [],
   totalCartItems: 0,
   cartTotal: 0,
+  isLoading: false,
+  stripeUrlData: {},
 };
 
 export const cartSlice = createSlice({
@@ -66,6 +71,18 @@ export const cartSlice = createSlice({
       }
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(GetStripeUrl.pending, (state) => {
+      state.isLoading = true;
+    }),
+      builder.addCase(GetStripeUrl.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.stripeUrlData = action.payload;
+      }),
+      builder.addCase(GetStripeUrl.rejected, (state) => {
+        state.isLoading = false;
+      });
+  },
 });
 
 //action
@@ -74,5 +91,6 @@ export const cartActions = cartSlice.actions;
 export const selectCart = (state: RootState) => state.cart.cart;
 export const selectTotalCartItems = (state: RootState) => state.cart.totalCartItems;
 export const selectCartTotal = (state: RootState) => state.cart.cartTotal;
+export const selectStripeData = (state: RootState) => state.cart.stripeUrlData;
 
 export const cartReducer = cartSlice.reducer;
