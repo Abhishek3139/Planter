@@ -2,7 +2,7 @@
 import { Fragment, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
   cartActions,
@@ -19,7 +19,6 @@ export interface IAppProps {
 
 export function Cart({ open, setOpen }: IAppProps) {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const cart = useAppSelector(selectCart);
   const cartTotal = useAppSelector(selectCartTotal);
   const totalCartItems = useAppSelector(selectTotalCartItems);

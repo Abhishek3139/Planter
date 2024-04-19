@@ -8,7 +8,7 @@ interface IStateType {
   totalCartItems: number;
   cartTotal: number;
   isLoading: boolean;
-  stripeUrlData: unknown;
+  stripeUrlData: any;
 }
 const initialState: IStateType = {
   cart: [],
