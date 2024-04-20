@@ -1,9 +1,10 @@
+import blog from '../../../public/static/images/blog-4-1-720x484.jpg';
 const callouts = [
   {
     name: 'Post format audio blogs',
     description:
       'Nunc aliquet, justo non commodo congue, velit sem pulvinarenim, acbibendum mi mi eget libero. Maecenas ac viverraenim, et laoreet...',
-    imageSrc: 'public/static/images/blog-4-1-720x484.jpg',
+    imageSrc: `${blog}`,
     imageAlt: 'flower',
     href: '#',
   },
@@ -11,7 +12,7 @@ const callouts = [
     name: 'Post format audio blogs',
     description:
       'Nunc aliquet, justo non commodo congue, velit sem pulvinarenim, acbibendum mi mi eget libero. Maecenas ac viverraenim, et laoreet...',
-    imageSrc: 'public/static/images/blog-4-1-720x484.jpg',
+    imageSrc: `${blog}`,
     imageAlt: 'flower',
     href: '#',
   },
@@ -19,7 +20,7 @@ const callouts = [
     name: 'Post format audio blogs',
     description:
       'Nunc aliquet, justo non commodo congue, velit sem pulvinarenim, acbibendum mi mi eget libero. Maecenas ac viverraenim, et laoreet...',
-    imageSrc: 'public/static/images/blog-4-1-720x484.jpg',
+    imageSrc: `${blog}`,
     imageAlt: 'flower',
     href: '#',
   },
