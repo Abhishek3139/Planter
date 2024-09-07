@@ -21,8 +21,8 @@ function PaymentSuccess() {
           <th>Status</th>
         </tr>
         {deliveryInfo &&
-          deliveryInfo[0]?.trackResults.map((track) => {
-            return track.scanEvents.reverse().map((eve, i) => {
+          deliveryInfo[0]?.trackResults.map((track: any) => {
+            return track.scanEvents.reverse().map((eve: any, i: number) => {
               return (
                 <tr key={i}>
                   <td>{eve.eventDescription}</td>
