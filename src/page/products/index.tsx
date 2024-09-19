@@ -4,7 +4,7 @@ import { Pagination } from '../../components/pagination';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { selectAllPlants } from '../../store/reducers/plantSlice';
 import { GetAllPlants } from '../../store/thunkApi/plantsApi';
-import bg from '../../../public/static/images/slideshow-v2-1.webp';
+import bg from '../../../public/static/images/bg_about.webp';
 
 import { useState } from 'react';
 export function Products() {
