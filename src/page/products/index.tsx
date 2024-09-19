@@ -4,6 +4,8 @@ import { Pagination } from '../../components/pagination';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { selectAllPlants } from '../../store/reducers/plantSlice';
 import { GetAllPlants } from '../../store/thunkApi/plantsApi';
+import bg from '../../../public/static/images/slideshow-v2-1.webp';
+
 import { useState } from 'react';
 export function Products() {
   const allPlants = useAppSelector(selectAllPlants);
@@ -16,7 +18,7 @@ export function Products() {
 
   return (
     <>
-      <div className='products-background p-16'>
+      <div className='products-background p-16' style={{ backgroundImage: `url(${bg})` }}>
         <div>
           <h1 className='text-4xl font-normal '>Products</h1>
           <div className='border-b-4 border-solid border-black w-12 inline-flex'></div>

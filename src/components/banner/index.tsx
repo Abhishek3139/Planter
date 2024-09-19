@@ -1,11 +1,14 @@
 import { useNavigate } from 'react-router-dom';
-
+import banner from '../../../public/static/images/slideshow-v2-1.webp';
 function Banner() {
   const navigate = useNavigate();
   return (
     <section>
       <div className=' text-white grid grid-cols-1 md:grid-cols-2 bg-[#f2f2f2]'>
-        <div className='hidden md:block shop-now-background'></div>
+        <div
+          className='hidden md:block shop-now-background'
+          style={{ backgroundImage: `url(${banner})` }}
+        ></div>
 
         <div className='text-center md:text-left p-16 my-auto'>
           <h1 className='text-4xl m-2 text-black'>For The True</h1>
