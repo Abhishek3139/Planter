@@ -33,13 +33,6 @@ function App() {
         <Route path='/thankYou' element={<ThankYou />}></Route>
         <Route path='/payment-success' element={<PaymentSuccess />}></Route>
         <Route path='/payment-failed' element={<PaymentFailed />}></Route>
-
-        {/* <Route path='/product' element={<SingleProduct />}></Route> */}
-
-        {/* <Route
-          path="/cart"
-          element={<Cart open={open} setOpen={handleShowCart} />}
-        ></Route> */}
       </Routes>
     </BrowserRouter>
   );
