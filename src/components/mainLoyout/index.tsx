@@ -7,6 +7,11 @@ import { Cart } from '../cart';
 import { useState } from 'react';
 import { Home } from '../../page/home';
 import { Products } from '../../page/products';
+import UserProfile from '../../page/userProfile';
+import Orders from '../../page/order';
+import AdminAddPlant from '../../page/admin/addPlant';
+import AdminDashboard from '../../page/admin';
+import AdminOrders from '../../page/admin/allOrders';
 
 function MainLayoutRoutes() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -30,6 +35,15 @@ function MainLayoutRoutes() {
           <Route path='/' element={<Home />} />
           <Route path='/product/:id' element={<SingleProduct />}></Route>
           <Route path='/products' element={<Products />}></Route>
+          <Route path='/profile' element={<UserProfile />}></Route>
+          <Route path='/orders' element={<Orders />}></Route>
+          <Route path='/admin' element={<AdminDashboard />}></Route>
+          <Route path='/admin/orders' element={<AdminOrders />}></Route>
+
+          <Route path='/admin/plant' element={<AdminAddPlant />}></Route>
+
+
+
         </Route>
       </Routes>
     </>
