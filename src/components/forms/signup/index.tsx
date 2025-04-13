@@ -37,7 +37,7 @@ export default function Signup() {
         <div className='text-center'>
           <img
             className='mx-auto h-12 w-auto'
-            src='/assets/logo-green.svg' // Replace with your logo
+            src='./static/planterlogo.png'
             alt='Planter Co.'
           />
           <h2 className='mt-6 text-3xl font-extrabold text-green-800'>

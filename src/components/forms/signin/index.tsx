@@ -44,7 +44,7 @@ export default function Signin() {
         <div className="text-center">
           <img
             className="mx-auto h-16 w-16"
-            src="/logo-plant.svg"
+            src="./static/planterlogo.png"
             alt="Planter Logo"
           />
           <h2 className="mt-6 text-2xl font-bold text-green-800">
