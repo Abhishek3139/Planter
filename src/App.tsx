@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
-import Signin from './components/forms/signin';
-import Signup from './components/forms/signup';
-import { ForgotPassword } from './components/forms/forgotPassword';
-import MainLayoutRoutes from './components/mainLoyout';
-import { ThankYou } from './components/thankYou';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import PaymentSuccess from './page/paymentSuccess/inde';
+import './App.css';
+import { ForgotPassword } from './components/forms/forgotPassword';
+import Signin from './components/forms/signin';
+import Signup from './components/forms/signup';
+import MainLayoutRoutes from './components/mainLoyout';
+import { ThankYou } from './components/thankYou';
 import PaymentFailed from './page/paymentFailed';
+import PaymentSuccess from './page/paymentSuccess/inde';
 function App() {
   return (
     <BrowserRouter>

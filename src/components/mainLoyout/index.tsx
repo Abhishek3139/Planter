@@ -12,6 +12,8 @@ import Orders from '../../page/order';
 import AdminAddPlant from '../../page/admin/addPlant';
 import AdminDashboard from '../../page/admin';
 import AdminOrders from '../../page/admin/allOrders';
+import AboutUs from '../../page/aboutUs';
+import Favorites from '../../page/favorites';
 
 function MainLayoutRoutes() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -39,11 +41,10 @@ function MainLayoutRoutes() {
           <Route path='/orders' element={<Orders />}></Route>
           <Route path='/admin' element={<AdminDashboard />}></Route>
           <Route path='/admin/orders' element={<AdminOrders />}></Route>
+          <Route path='/about-us' element={<AboutUs />}></Route>
+          <Route path="/favorites" element={<Favorites />} />
 
           <Route path='/admin/plant' element={<AdminAddPlant />}></Route>
-
-
-
         </Route>
       </Routes>
     </>

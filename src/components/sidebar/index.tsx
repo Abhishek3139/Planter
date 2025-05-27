@@ -73,8 +73,8 @@ export default function Sidebar({ isOpen, handleViewSidebar }: IAppProps) {
                                 PRODUCTS
                               </li>
                             </Link>
-                            <li className='flex py-6'>BLOG</li>
-                            <li className='flex py-6'>PAGE</li>
+                            <li className='flex py-6'>ABOUT US</li>
+                     
                           </ul>
                         </div>
                       </div>

@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function PaymentSuccess() {
+    const navigate = useNavigate();
   const [deliveryInfo, setDeliveryInfo] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -25,7 +27,7 @@ function PaymentSuccess() {
 
   return (
     <div className="p-6 max-w-4xl mx-auto bg-white shadow-md rounded-lg mt-10">
-      <h1 className="text-2xl font-bold text-green-700 mb-4">🎉 Payment Successful!</h1>
+      <h1 className="text-2xl font-bold text-green-700 mb-4">Payment Successful!</h1>
 
       {loading && <p className="text-gray-600">Fetching delivery info...</p>}
       {error && <p className="text-red-600">{error}</p>}
@@ -60,8 +62,13 @@ function PaymentSuccess() {
               </tbody>
             </table>
           </div>
+
         </>
       )}
+        <button className='bg-green-700 w-36 h-10 m-4 text-white' onClick={() => navigate('/')}>
+            Back To Home
+          </button>
+
     </div>
   );
 }

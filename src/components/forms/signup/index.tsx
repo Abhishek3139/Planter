@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { selectIsRegistered, selectLoginLoading } from '../../../store/reducers/authSlice';
 import { RegisterInputs } from '../../../modals/registerModal';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { RegisterUser } from '../../../store/thunkApi/authApi';
 import { PlantLoader } from '../../loaders/plantLoader';
 
@@ -20,7 +20,8 @@ export default function Signup() {
 
   const isRegistered = useAppSelector(selectIsRegistered);
   const isLoading = useAppSelector(selectLoginLoading);
-
+ const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const handleRegister: SubmitHandler<RegisterInputs> = (data) => {
     dispatch(RegisterUser(data));
   };
@@ -78,41 +79,57 @@ export default function Signup() {
           </div>
 
           {/* Password */}
-          <div>
-            <label htmlFor='password' className='block text-sm font-medium text-gray-700 text-left'>
-              Password
-            </label>
-            <input
-              id='password'
-              type='password'
-              {...register('password', { required: 'Password is required' })}
-              placeholder='Create a strong password'
-              className='mt-1 block w-full rounded-md border border-green-300 px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
-            />
-            <p className='text-red-500 text-sm mt-1'>{errors.password?.message}</p>
-          </div>
+        <div>
+  <label htmlFor='password' className='block text-sm font-medium text-gray-700 text-left'>
+    Password
+  </label>
+  <div className='relative'>
+    <input
+      id='password'
+      type={showPassword ? 'text' : 'password'}
+      {...register('password', { required: 'Password is required' })}
+      placeholder='Create a strong password'
+      className='mt-1 block w-full rounded-md border border-green-300 px-3 py-2 pr-10 text-gray-900 placeholder:text-gray-400 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+    />
+    <button
+      type='button'
+      onClick={() => setShowPassword((prev) => !prev)}
+      className='absolute inset-y-0 right-3 flex items-center text-sm text-green-600 hover:text-green-800 focus:outline-none'
+    >
+      {showPassword ? 'Hide' : 'Show'}
+    </button>
+  </div>
+  <p className='text-red-500 text-sm mt-1'>{errors.password?.message}</p>
+</div>
+
 
           {/* Confirm Password */}
           <div>
-            <label
-              htmlFor='confirmPassword'
-              className='block text-sm font-medium text-gray-700 text-left'
-            >
-              Confirm Password
-            </label>
-            <input
-              id='confirmPassword'
-              type='password'
-              {...register('passwordConfirm', {
-                required: 'Please confirm your password',
-                validate: (value) =>
-                  value === watch('password') || 'Passwords do not match',
-              })}
-              placeholder='Confirm your password'
-              className='mt-1 block w-full rounded-md border border-green-300 px-3 py-2 text-gray-900 placeholder:text-gray-400 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
-            />
-            <p className='text-red-500 text-sm mt-1'>{errors.passwordConfirm?.message}</p>
-          </div>
+  <label htmlFor='confirmPassword' className='block text-sm font-medium text-gray-700 text-left'>
+    Confirm Password
+  </label>
+  <div className='relative'>
+    <input
+      id='confirmPassword'
+      type={showConfirmPassword ? 'text' : 'password'}
+      {...register('passwordConfirm', {
+        required: 'Please confirm your password',
+        validate: (value) => value === watch('password') || 'Passwords do not match',
+      })}
+      placeholder='Confirm your password'
+      className='mt-1 block w-full rounded-md border border-green-300 px-3 py-2 pr-10 text-gray-900 placeholder:text-gray-400 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+    />
+    <button
+      type='button'
+      onClick={() => setShowConfirmPassword((prev) => !prev)}
+      className='absolute inset-y-0 right-3 flex items-center text-sm text-green-600 hover:text-green-800 focus:outline-none'
+    >
+      {showConfirmPassword ? 'Hide' : 'Show'}
+    </button>
+  </div>
+  <p className='text-red-500 text-sm mt-1'>{errors.passwordConfirm?.message}</p>
+</div>
+
 
           {/* Submit Button */}
           <div>

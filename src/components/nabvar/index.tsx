@@ -44,12 +44,10 @@ function Navbar({ handleViewSidebar, handleShowCart }: IAppProps) {
             <Link to='/orders' className='text-lg font-medium hover:text-green-500'>
               Orders
             </Link>
-            <Link to='/blog' className='text-lg font-medium hover:text-green-500'>
-              Blog
+            <Link to='/about-us' className='text-lg font-medium hover:text-green-500'>
+              About Us
             </Link>
-            <Link to='/page' className='text-lg font-medium hover:text-green-500'>
-              Page
-            </Link>
+         
           </div>
 
           {/* Icons Section */}
@@ -65,7 +63,7 @@ function Navbar({ handleViewSidebar, handleShowCart }: IAppProps) {
             </Link>
 
             {/* Wishlist Icon */}
-            <button className='text-2xl text-gray-600 hover:text-green-500'>
+            <button className='text-2xl text-gray-600 hover:text-green-500' onClick={()=>navigate('/favorites ')}>
               <CiHeart />
             </button>
 
