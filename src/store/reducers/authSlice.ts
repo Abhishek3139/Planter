@@ -40,6 +40,7 @@ export const authSlice = createSlice({
         state.isLoading = true;
         state.user = action.payload;
         state.error = null;
+        encryptData('user',action.payload)
         encryptData('isLoggedIn', true);
         state.isLoggedIn = true;
       })

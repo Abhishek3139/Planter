@@ -1,93 +1,122 @@
+import { useEffect, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { decryptData } from '../../utils/utils';
+import { User, UserForm } from '../../modals/userModals';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { GetUser, UpdateMe } from '../../store/thunkApi/user';
+import { selectIsUserUpdated, selectUser, selectUserError } from '../../store/reducers/user';
+import { toast } from 'react-toastify';
+
 function UserProfile() {
-  const user = {
-    name: 'Jane Doe',
-    email: 'jane.doe@example.com',
-    address: '123 Greenhouse Lane, Plant City, FL 54321',
-  };
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser);
+  const loggedUser: User = decryptData('user');
+  const error = useAppSelector(selectUserError);
+  const isUserUpdated = useAppSelector(selectIsUserUpdated);
+  const [isEditing, setIsEditing] = useState(false);
 
-  const orders = [
-    { id: 'ORD123', productName: 'Monstera Deliciosa', date: '2025-04-01', amount: 45.99 },
-    { id: 'ORD124', productName: 'Snake Plant', date: '2025-03-15', amount: 29.99 },
-  ];
-
-  const tracking = [
-    {
-      trackingNumber: '123456789012',
-      scanEvents: [
-        { eventDescription: 'Delivered', derivedStatus: 'Completed', date: '2025-04-03' },
-        { eventDescription: 'Out for delivery', derivedStatus: 'In Transit', date: '2025-04-03' },
-        { eventDescription: 'Arrived at facility', derivedStatus: 'In Transit', date: '2025-04-02' },
-      ],
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<UserForm>({
+    defaultValues: {
+      name: '',
+      email: '',
     },
-  ];
+  });
 
+  const onSubmit: SubmitHandler<UserForm> = (data) => {
+    dispatch(UpdateMe(data));
+    setIsEditing(false);
+  };    
+  useEffect(() => {
+    if (loggedUser?._id) {
+      dispatch(GetUser(loggedUser._id));
+    }
+  }, [loggedUser._id, isUserUpdated]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error.message);
+    }
+  }, [error]);
+  useEffect(() => {
+    if (user) {
+      reset({ name: user.name || '', email: user.email || '', address: user?.address });
+    }
+  }, [user, reset]);
   return (
-    <div className="px-4 py-10 max-w-6xl mx-auto">
-      <h1 className="text-4xl font-bold text-center text-green-800 mb-12">🌿 My Profile</h1>
+    <div className='px-4 py-10 max-w-4xl mx-auto'>
+      <h1 className='text-4xl font-bold text-center text-green-800 mb-12'>🌿 My Profile</h1>
 
-      {/* Personal Info */}
-      <div className="bg-white p-6 rounded-2xl shadow-md mb-10">
-        <h2 className="text-2xl font-semibold text-green-700 mb-4">👤 Personal Information</h2>
-        <div className="space-y-2 text-gray-700">
-          <p><span className="font-medium">Name:</span> {user.name}</p>
-          <p><span className="font-medium">Email:</span> {user.email}</p>
-          <p><span className="font-medium">Address:</span> {user.address}</p>
+      <div className='bg-white p-8 rounded-2xl shadow-lg'>
+        <div className='flex items-center justify-between mb-6'>
+          <h2 className='text-2xl font-semibold text-green-700'>👤 Personal Information</h2>
+          <button
+            onClick={() => setIsEditing((prev) => !prev)}
+            className='text-sm bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition'
+          >
+            {isEditing ? 'Cancel' : 'Edit'}
+          </button>
         </div>
-      </div>
 
-      {/* Orders */}
-      <div className="bg-white p-6 rounded-2xl shadow-md mb-10">
-        <h2 className="text-2xl font-semibold text-green-700 mb-4">🛒 Order History</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full table-auto border border-gray-200 text-sm md:text-base">
-            <thead className="bg-green-100">
-              <tr>
-                <th className="px-4 py-2 text-left">Order ID</th>
-                <th className="px-4 py-2 text-left">Product</th>
-                <th className="px-4 py-2 text-left">Date</th>
-                <th className="px-4 py-2 text-left">Amount</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map((order) => (
-                <tr key={order.id} className="hover:bg-gray-50 border-t">
-                  <td className="px-4 py-2">{order.id}</td>
-                  <td className="px-4 py-2">{order.productName}</td>
-                  <td className="px-4 py-2">{order.date}</td>
-                  <td className="px-4 py-2 text-green-600 font-semibold">${order.amount.toFixed(2)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+        {isEditing ? (
+          <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
+            <div>
+              <label className='block text-gray-600 mb-1 font-medium'>Name</label>
+              <input
+                type='text'
+                {...register('name', { required: 'Name is required' })}
+                className='w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500'
+              />
+              {errors.name && <p className='text-red-600 text-sm'>{errors.name.message}</p>}
+            </div>
 
-      {/* Tracking */}
-      <div className="bg-white p-6 rounded-2xl shadow-md">
-        <h2 className="text-2xl font-semibold text-green-700 mb-4">🚚 Delivery Status</h2>
-        <p className="mb-2 text-gray-700">
-          <span className="font-medium">Tracking Number:</span> {tracking[0].trackingNumber}
-        </p>
-        <div className="overflow-x-auto">
-          <table className="w-full table-auto border border-gray-200 text-sm md:text-base">
-            <thead className="bg-green-100">
-              <tr>
-                <th className="px-4 py-2 text-left">Event</th>
-                <th className="px-4 py-2 text-left">Status</th>
-                <th className="px-4 py-2 text-left">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[...tracking[0].scanEvents].reverse().map((event, i) => (
-                <tr key={i} className="hover:bg-gray-50 border-t">
-                  <td className="px-4 py-2">{event.eventDescription}</td>
-                  <td className="px-4 py-2">{event.derivedStatus}</td>
-                  <td className="px-4 py-2">{event.date}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            <div>
+              <label className='block text-gray-600 mb-1 font-medium'>Email</label>
+              <input
+                type='email'
+                {...register('email', { required: 'Email is required' })}
+                className='w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500'
+              />
+              {errors.email && <p className='text-red-600 text-sm'>{errors.email.message}</p>}
+            </div>
+            <div>
+              <label className='block text-gray-600 mb-1 font-medium'>Address</label>
+              <input
+                type='text'
+                {...register('address')}
+                className='w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500'
+              />
+            </div>
+
+            <div className='flex justify-end'>
+              <button
+                type='submit'
+                className='bg-green-700 text-white px-6 py-2 rounded-lg hover:bg-green-800 transition'
+              >
+                Save Changes
+              </button>
+            </div>
+          </form>
+        ) : (
+          <div className='space-y-4'>
+            <p>
+              <span className='font-medium text-gray-600'>Name:</span>{' '}
+              <span className='text-gray-800'>{user?.name}</span>
+            </p>
+            <p>
+              <span className='font-medium text-gray-600'>Email:</span>{' '}
+              <span className='text-gray-800'>{user?.email}</span>
+            </p>
+            <p>
+              <span className='font-medium text-gray-600'>Address:</span>{' '}
+              <span className='text-gray-800'>{user?.address}</span>
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

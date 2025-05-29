@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './reducers/authSlice';
 import { plantReducer } from './reducers/plantSlice';
 import { cartReducer } from './reducers/cartSlice';
+import { userReducer } from './reducers/user';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     plant: plantReducer,
     cart: cartReducer,
+    user:userReducer
   },
 });
 

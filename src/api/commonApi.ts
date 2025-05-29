@@ -21,4 +21,9 @@ export const commonApi = {
       baseURL: rootUrl,
     });
   },
+  patchData(url: string, data: unknown) {
+    return axiosClient.patch(`${url}`, data, {
+      baseURL: rootUrl,
+    });
+  },
 };
